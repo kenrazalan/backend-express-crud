@@ -1,19 +1,26 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
-// import cors from "cors";
+import router from "./routes/todo.routes";
+const cors = require("cors");
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
-// const corsOptions = {
-//   origin: "http://localhost:3030",
-// };
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// db.sequelize
+//   .sync({ force: true })
+//   .then(() => {
+//     console.log("Synced db.");
+//   })
+//   .catch((err: any) => {
+//     console.log("Failed to sync db: " + err.message);
+//   });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("sasdsad");
-});
+app.use("/api/todos", router);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
