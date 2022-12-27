@@ -4,7 +4,7 @@ export const createInputSchema = {
     title: { type: "string" },
     description: { type: "string" },
   },
-  required: ["title", "description"],
+  required: ["title"],
 };
 
 export const updateInputSchema = {
